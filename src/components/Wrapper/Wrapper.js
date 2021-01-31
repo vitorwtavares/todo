@@ -9,6 +9,7 @@ const colors = {
   neutral: {
     900: '#000',
     800: '#222',
+    300: '#eee',
     0: '#fff'
   }
 }

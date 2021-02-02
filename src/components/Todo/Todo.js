@@ -1,12 +1,35 @@
-import React, { useState } from 'react'
-import { Checkbox, Flex, Button, Icon, Input } from '@chakra-ui/react'
+import React, { useState, useEffect } from 'react'
+import { Checkbox, Flex, Icon, Input } from '@chakra-ui/react'
 import { AiFillCloseCircle, AiOutlinePlus } from 'react-icons/ai'
+import uuid from 'react-uuid'
 
 const Todo = () => {
   const [todoList, setTodoList] = useState([])
+  const [newTodo, setNewTodo] = useState('')
+
+  const handleKeyPress = e => {
+    e.key === 'Enter' && handleCreate()
+  }
+
+  const handleCreate = () => {
+    setTodoList([...todoList, { id: uuid(), description: newTodo, checked: false }])
+    setNewTodo('')
+  }
+
+  useEffect(() => {
+    console.log('effect', todoList)
+  }, [todoList])
 
   return (
-    <Flex flexDirection='column' w='500px' h='500px' bg='neutral.200' borderRadius='12px' p='24px'>
+    <Flex
+      flexDirection='column'
+      w='500px'
+      h='500px'
+      bg='neutral.200'
+      borderRadius='12px'
+      p='24px'
+      zIndex='1'
+    >
       <Input
         variant='flushed'
         placeholder='Your title here'
@@ -15,7 +38,15 @@ const Todo = () => {
         mb='16px'
       />
       <Flex alignItems='center'>
-        <Input variant='flushed' placeholder='Add something to the list' fontSize='lg' mb='16px' />
+        <Input
+          variant='flushed'
+          placeholder='Add something to the list'
+          fontSize='lg'
+          mb='16px'
+          value={newTodo}
+          onChange={e => setNewTodo(e.target.value)}
+          onKeyPress={e => handleKeyPress(e)}
+        />
         <Icon
           as={AiOutlinePlus}
           color='brand.700'
@@ -23,24 +54,13 @@ const Todo = () => {
           h='20px'
           ml='8px'
           cursor='pointer'
-          onClick={() =>
-            setTodoList([
-              ...todoList,
-              { index: todoList.length + 1, description: '', checked: false }
-            ])
-          }
+          onClick={() => handleCreate()}
         />
       </Flex>
       <Flex flexDirection='column' w='100%' h='100%' overflowY='auto'>
-        {todoList.map((todo, index) => (
-          <Flex key={index} alignItems='center'>
-            <TodoItem todo={todo} />
-            <Icon
-              as={AiFillCloseCircle}
-              color='brand.700'
-              cursor='pointer'
-              onClick={() => setTodoList(todoList.filter(e => e.index !== todo.index))}
-            />
+        {todoList.map(todo => (
+          <Flex key={todo.id} alignItems='center'>
+            <TodoItem todo={todo} todoList={todoList} setTodoList={setTodoList} />
           </Flex>
         ))}
       </Flex>
@@ -48,12 +68,15 @@ const Todo = () => {
   )
 }
 
-const TodoItem = ({ todo }) => {
-  const [description, setDescription] = useState('')
+const TodoItem = ({ todo, todoList, setTodoList }) => {
   const [checked, setChecked] = useState(false)
 
+  const handleDelete = () => {
+    setTodoList(todoList.filter(e => e.id !== todo.id))
+  }
+
   return (
-    <Flex w='100%'>
+    <Flex w='100%' alignItems='center'>
       <Checkbox
         defaultValue={todo.checked || false}
         onChange={e => setChecked(e.target.checked)}
@@ -62,9 +85,15 @@ const TodoItem = ({ todo }) => {
       />
       <Input
         defaultValue={todo.description || ''}
-        onChange={e => setDescription(e.target.value)}
         placeholder='List item goes here'
         variant='flushed'
+        textDecoration={checked && 'line-through'}
+      />
+      <Icon
+        as={AiFillCloseCircle}
+        color='brand.700'
+        cursor='pointer'
+        onClick={() => handleDelete()}
       />
     </Flex>
   )

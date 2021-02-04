@@ -1,3 +1,3 @@
 export * from './Home'
 export * from './Wrapper'
-export * from './Todo'
+export * from './TodoCard'

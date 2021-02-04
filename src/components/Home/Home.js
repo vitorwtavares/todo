@@ -1,13 +1,13 @@
 import React from 'react'
 import { Flex, Text, Box } from '@chakra-ui/react'
 
-import { Todo } from 'components'
+import { TodoCard } from 'components'
 
 const Home = () => {
   return (
     <Flex direction='column' align='center' justify='center' h='100vh' w='100%'>
       <Background />
-      <Todo />
+      <TodoCard />
     </Flex>
   )
 }
@@ -26,6 +26,7 @@ const Background = () => {
   ]
   return (
     <Flex zIndex='0'>
+      <Box w='100vw' h='100vh' position='absolute' top='0' left='0' zIndex='1' />
       <Text
         position='absolute'
         top={0}
@@ -45,6 +46,7 @@ const Background = () => {
       </Text>
       {name.map((e, index) => (
         <Text
+          key={index}
           position='absolute'
           top={`${(index + 1) * 10}%`}
           left='15px'

@@ -1,13 +1,9 @@
-# Boilerplate para projetos básicos em React
+# Todo com progress bar
 
-- [Chakra UI](https://chakra-ui.com/) e um tema básico configurado para o mesmo
-- Estrutura básica de providers e services com axios
-- ESLint, Prettier e EditorConfig configurados
-- Template CRA limpo
-- Estrutura básica para melhor organização de pastas
+- Aplicativo de lista de tarefas com barra de progresso indicativa.
 
 ### `yarn start`
 
 Para rodar no [http://localhost:3000](http://localhost:3000)
 
-Criado com CRA.
+Criado com a partir do meu próprio [boilerplate básico de React](https://github.com/vitorwtavares/react-projects-boilerplate).

@@ -35,7 +35,7 @@ const TodoCard = () => {
       flexDirection='column'
       w='600px'
       h='600px'
-      bg='neutral.200'
+      bg='neutral.0'
       borderRadius='12px'
       p='24px'
       zIndex='2'
@@ -44,8 +44,9 @@ const TodoCard = () => {
         variant='flushed'
         placeholder='Your title here'
         fontSize='2xl'
-        fontWeight='600'
+        fontWeight='400'
         mb='16px'
+        _focus={{ borderColor: 'brand.500' }}
       />
       <Flex alignItems='center'>
         <Input
@@ -56,10 +57,11 @@ const TodoCard = () => {
           value={newTodo}
           onChange={e => setNewTodo(e.target.value)}
           onKeyPress={e => handleKeyPress(e)}
+          _focus={{ borderColor: 'brand.500' }}
         />
         <Icon
           as={AiOutlinePlus}
-          color='brand.700'
+          color='brand.400'
           w='20px'
           h='20px'
           ml='8px'
@@ -80,11 +82,12 @@ const TodoCard = () => {
           hasStripe={isDone() ? false : true}
           value={progress}
           height='32px'
-          colorScheme={isDone() ? 'green' : 'blue'}
+          colorScheme={isDone() ? 'green' : 'brand'}
+          bg='neutral.600'
           borderRadius='2px'
         />
         <Text
-          color='neutral.900'
+          color='neutral.0'
           position='absolute'
           top='5px'
           left='266px'
@@ -95,7 +98,7 @@ const TodoCard = () => {
         </Text>
         <Icon
           as={AiOutlineCheck}
-          color='white'
+          color='neutral.0'
           w={isDone() ? '20px' : '0px'}
           h='20px'
           position='absolute'
@@ -144,7 +147,7 @@ const TodoItem = ({ todo, itemIndex, todoList, setTodoList }) => {
         defaultValue={todo.checked || false}
         onChange={e => handleCheck(e)}
         mx='10px'
-        colorScheme='blue'
+        colorScheme='green'
       />
       <Input
         defaultValue={todo.description || ''}
@@ -152,10 +155,11 @@ const TodoItem = ({ todo, itemIndex, todoList, setTodoList }) => {
         variant='flushed'
         textDecoration={checked && 'line-through'}
         onBlur={e => handleEdit(e.target.value)}
+        _focus={{ borderColor: 'brand.500' }}
       />
       <Icon
         as={AiFillCloseCircle}
-        color='brand.700'
+        color='brand.400'
         cursor='pointer'
         onClick={() => handleDelete()}
       />

@@ -2,6 +2,10 @@
 
 - Aplicativo de lista de tarefas com barra de progresso indicativa.
 
+### `yarn`
+
+Para instalar as dependências.
+
 ### `yarn start`
 
 Para rodar no [http://localhost:3000](http://localhost:3000)

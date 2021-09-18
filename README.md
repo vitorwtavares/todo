@@ -1,13 +1,13 @@
 # Todo com progress bar
 
-- Aplicativo de lista de tarefas com barra de progresso indicativa.
+- Todo list app with progress bar.
 
 ### `yarn`
 
-Para instalar as dependências.
+To install dependencies.
 
 ### `yarn start`
 
-Para rodar no [http://localhost:3000](http://localhost:3000)
+To run on [http://localhost:3000](http://localhost:3000).
 
-Criado com a partir do meu próprio [boilerplate básico de React](https://github.com/vitorwtavares/react-projects-boilerplate).
+Created with my very own [React basic boilerplate](https://github.com/vitorwtavares/react-projects-boilerplate).
